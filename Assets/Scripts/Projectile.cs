@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     // settings
     public Vector2 direction; // x, y vector that determines direction, for example (0, 1) up or (0, -1) down
     public float stepLength; // scalar value to move each step
+    public float damage;
 
     // local variables
     private SpriteRenderer spriteRenderer; // the sprite renderer component on this game object - private because we get it in the start method
@@ -40,5 +41,12 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("Sprite renderer hasn't been assigned!");
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // projectile is set up as a trigger and with a kinematic rigidbody2D so that it will trigger collisions
+        //Debug.Log("Projectile hit something, destroying.");
+        Destroy(gameObject);
     }
 }

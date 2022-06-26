@@ -14,7 +14,9 @@ public class BunkerTile : MonoBehaviour
         //Debug.Log("Collided with a bunker piece, bunker taking damage.");
         health -= 20f;
 
-        // could check health here and if health is less than some number, set a new sprite
+        // change sprite based on current health - scale down in y to show "shrinking"
+        float percentHealth = health / 100f; // get current health out of 100 - should actually grab max health on start in case max health isn't 100 - same with setting scale
+        transform.localScale = new Vector3(1f, percentHealth, 1f);
 
         // destroy if health hits 0
         if (health <= 0f)

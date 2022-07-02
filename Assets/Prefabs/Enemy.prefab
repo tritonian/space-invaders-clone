@@ -126,6 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTimeShoot: 1
   maxTimeShoot: 10
-  projectilePrefab: {fileID: 0}
-  projectileDirection: {x: 0, y: 0}
-  projectileSprite: {fileID: 0}
+  projectilePrefab: {fileID: 6974513272986495491, guid: b69e8006d781f1d47b97c58b9b83cc43, type: 3}

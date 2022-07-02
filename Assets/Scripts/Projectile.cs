@@ -26,6 +26,12 @@ public class Projectile : MonoBehaviour
             Vector3 moveStep = stepLength * Time.deltaTime * direction; // the vector we want to move - scaled by deltaTime
             transform.position = transform.position + moveStep; // add the vector we want to move to our current position
         }
+
+        // kill projectile when it leaves the screen
+        if (transform.position.y > 10f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetSprite(Sprite newSprite)
@@ -44,9 +50,24 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // projectiles get destroyed no matter what they hit - except the thing that launched them
         // this function should also be called on the other object that got hit
         // projectile is set up as a trigger and with a kinematic rigidbody2D so that it will trigger collisions
-        //Debug.Log("Projectile hit something, destroying this projectile.");
+        Debug.Log("Projectile hit something" + collision.name + " " + collision.tag);
+
+        // check if we hit the thing that launched us - Player is tagged "Player"
+        if (direction == Vector2.up && collision.CompareTag("Player"))
+        {
+            // projectile came from player and hit itself - don't destroy
+            return;
+        }
+
+        if (direction == Vector2.down && collision.CompareTag("Enemy"))
+        {
+            // projectile came from enemy and hit itself - don't destory
+            return;
+        }
+
         Destroy(gameObject); // destroys this projectile
     }
 }

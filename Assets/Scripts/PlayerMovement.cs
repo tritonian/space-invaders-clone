@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
        
         transform.position = transform.position + new Vector3(movementInput.x * Time.deltaTime * playerSpeed, 0f, 0f);
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
         }

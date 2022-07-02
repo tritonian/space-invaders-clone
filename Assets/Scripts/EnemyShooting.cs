@@ -9,8 +9,7 @@ public class EnemyShooting : MonoBehaviour
     public float maxTimeShoot = 10f;
 
     public GameObject projectilePrefab;
-    public Vector2 projectileDirection;
-    public Sprite projectileSprite;
+    //public Sprite projectileSprite;
 
     private float shotTimePassed = 0f;
     private float currentShootTime;

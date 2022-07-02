@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3239543484514949036}
   - component: {fileID: 9091144587256713343}
+  - component: {fileID: 8844110704061429552}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -133,3 +134,20 @@ MonoBehaviour:
   maxXPosition: 9
   minXPosition: -9
   projectilePrefab: {fileID: 6974513272986495491, guid: b69e8006d781f1d47b97c58b9b83cc43, type: 3}
+  gameManager: {fileID: 0}
+--- !u!58 &8844110704061429552
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195101731791189935}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3

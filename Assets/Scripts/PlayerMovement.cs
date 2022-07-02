@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float minXPosition;
     public GameObject projectilePrefab;
 
+    public GameManager gameManager;
+
     // Update is called once per frame
     void Update()
     {
@@ -49,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Shoot();
         }
-
     }
     private void Shoot()
     {
@@ -58,5 +59,30 @@ public class PlayerMovement : MonoBehaviour
 
         Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
         projectile.direction = Vector2.up;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // collision should only happen when a projectile hits, but can be our projectile
+        Projectile hitProjectile = collision.GetComponent<Projectile>();
+        if (hitProjectile == null)
+        {
+            // check for null reference
+            Debug.Log("Hit something that doesn't have the projectile script! Something is wrong.");
+            return;
+        }
+        if (hitProjectile.direction == Vector2.up)
+        {
+            // hit our own projectile
+            return;
+        }
+        GotHit();
+    }
+
+    private void GotHit()
+    {
+        // player got hit by projectile - already confirmed it is an enemy because of direction
+        gameManager.LostLife();
+        // play sprite effects here or on game manager
     }
 }

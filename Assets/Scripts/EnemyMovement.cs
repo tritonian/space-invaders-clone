@@ -29,12 +29,12 @@ public class EnemyMovement : MonoBehaviour
         //movement- similar to enemy shooting script
         //time pass for movement 
         
-        while ( maxXPosition < maxXOOB)
+        if ( maxXPosition < maxXOOB)
         {
             enemyPosition.x = 1 * enemySpeed;
         }
         
-        while (minXPosition > minXOOB)
+        if (minXPosition > minXOOB)
         {
             enemyPosition.x = -1 * enemySpeed;
         }

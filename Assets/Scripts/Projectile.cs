@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     // settings
     public Vector2 direction; // x, y vector that determines direction, for example (0, 1) up or (0, -1) down
     public float stepLength; // scalar value to move each step
+    public float screenHeight = 5f; // used for killing projectiles that move off screen
 
     // local variables
     private SpriteRenderer spriteRenderer; // the sprite renderer component on this game object - private because we get it in the start method
@@ -27,8 +28,8 @@ public class Projectile : MonoBehaviour
             transform.position = transform.position + moveStep; // add the vector we want to move to our current position
         }
 
-        // kill projectile when it leaves the screen
-        if (transform.position.y > 10f)
+        // kill projectile when it leaves the screen plus a tiny buffer
+        if (Mathf.Abs(transform.position.y) > screenHeight + 1f)
         {
             Destroy(gameObject);
         }
@@ -53,9 +54,10 @@ public class Projectile : MonoBehaviour
         // projectiles get destroyed no matter what they hit - except the thing that launched them
         // this function should also be called on the other object that got hit
         // projectile is set up as a trigger and with a kinematic rigidbody2D so that it will trigger collisions
-        Debug.Log("Projectile hit something" + collision.name + " " + collision.tag);
 
-        // check if we hit the thing that launched us - Player is tagged "Player"
+        //Debug.Log("Projectile hit something" + collision.name + " " + collision.tag);
+
+        // check if we hit the thing that launched us - Player is tagged "Player" - Compare tag is better than string comparison using if (tag == tag)
         if (direction == Vector2.up && collision.CompareTag("Player"))
         {
             // projectile came from player and hit itself - don't destroy

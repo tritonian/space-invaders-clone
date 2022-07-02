@@ -12,19 +12,21 @@ public class EnemyShooting : MonoBehaviour
     //public Sprite projectileSprite;
 
     private float shotTimePassed = 0f;
-    private float currentShootTime;
+    private float timeBetweenShots;
 
     private void Start()
     {
-        currentShootTime = Random.Range(minTimeShoot, maxTimeShoot);
+        timeBetweenShots = Random.Range(minTimeShoot, maxTimeShoot);
     }
 
     void Update()
     {
         shotTimePassed += Time.deltaTime;
-        if (shotTimePassed >= currentShootTime)
+        if (shotTimePassed >= timeBetweenShots)
         {
             Shoot();
+            shotTimePassed = 0f;
+            timeBetweenShots = Random.Range(minTimeShoot, maxTimeShoot); // set new random range so shots aren't evenly spaced
         }
     }
 
@@ -33,7 +35,7 @@ public class EnemyShooting : MonoBehaviour
         //create projectile
         //create direction for proj.
         //create sprite?
-        GameObject projectile = Instantiate(projectilePrefab);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.GetComponent<Projectile>().direction = Vector2.down;
     }
 }

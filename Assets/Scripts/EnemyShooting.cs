@@ -35,7 +35,6 @@ public class EnemyShooting : MonoBehaviour
         //create direction for proj.
         //create sprite?
         GameObject projectile = Instantiate(projectilePrefab);
-        
-        
+        projectile.GetComponent<Projectile>().direction = Vector2.down;
     }
 }

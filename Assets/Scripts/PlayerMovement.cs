@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Shoot()
     {
-        //create projectile
+        //create projectile, save a reference to it
         //give direction
 
         Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();

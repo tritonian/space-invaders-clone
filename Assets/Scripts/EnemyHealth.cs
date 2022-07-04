@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>(); // pretty terrible performance-wise, there are better ways to do this - maybe have parent have a reference
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // check if we hit ourselves
@@ -25,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
 
         // if we have gotten this far, it is a projectile and it isn't ours
         // before we destroy, tell GameManager we died so it can add a score
+        gameManager.KilledEnemy();
         Destroy(gameObject); // destroy this enemy
     }
 }

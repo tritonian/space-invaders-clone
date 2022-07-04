@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     // object references (need to be setup before starting scene)
     [SerializeField] private GameObject lifeSpritePrefab;
     [SerializeField] private Transform lifeSpriteTextGameObject; // the parent object that the life sprites will be placed under in the heirarchy
+    [SerializeField] private TMP_Text scoreText;
 
     // internal private references
     private List<GameObject> lifeSprites;
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeLives();
+        currentScore = 0;
+        UpdateScore();
+        levelNumber = 1;
     }
 
     // instantiate lives parametrically based on number of lives and distance between them
@@ -60,16 +64,18 @@ public class GameManager : MonoBehaviour
 
     public void LostLife()
     {
+        
+        if (lives <= 0)
+        {
+            GameOver();
+            return;
+        }
+
         // get last life sprite in line and destroy it
         Destroy(lifeSprites[lifeSprites.Count - 1]);
         lifeSprites.Remove(lifeSprites[lifeSprites.Count - 1]);
         
         lives -= 1;
-
-        if (lives <= 0)
-        {
-            GameOver();
-        }
 
         // maybe clear projectiles on the screen?
     }
@@ -77,7 +83,13 @@ public class GameManager : MonoBehaviour
     // called by enemy when killed
     public void KilledEnemy()
     {
+        currentScore += 10 * levelNumber;
+        UpdateScore();
+    }
 
+    private void UpdateScore()
+    {
+        scoreText.text = "Score: " + currentScore;
     }
 
     // called by special enemy when killed

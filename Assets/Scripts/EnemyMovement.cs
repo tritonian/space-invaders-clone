@@ -11,20 +11,29 @@ public class EnemyMovement : MonoBehaviour
     public float minXOutOfBounds;
     public float enemySpeed;
     public float speedInterval;
+    public float forwardStep;
 
     private float enemyPosition = 1f; // 1 is right direction ->, neg is <-
+    public int enemyCount; // number of enemies in group
+    public int startingEnemyCount;
 
     void Start()
     {
         GetMinMax();
+        startingEnemyCount = enemyCount;
     }
 
     void Update()
     {
         //enemy loss detection - active in heirarchy 
 
-        GetMinMax(); // check if we are out of bounds
+        GetMinMax(); // check if we are out of bounds, also gets number of enemies
         MoveEnemies(); // set direction of movement based on position, move
+
+        if (enemyCount <= 0)
+        {
+            // go to next level
+        }
     }
     
     void MoveEnemies()
@@ -34,6 +43,7 @@ public class EnemyMovement : MonoBehaviour
         {
             // move left
             enemyPosition = -1;
+            MoveForward();
         }
 
         // check if our left-most enemy is past left wall
@@ -41,9 +51,17 @@ public class EnemyMovement : MonoBehaviour
         {
             // move right
             enemyPosition = 1;
+            MoveForward();
         }
 
-        transform.position = transform.position + new Vector3(enemyPosition * Time.deltaTime, 0f, 0f);
+        // calculate movement speed using direction, deltaTime, speed setting, and multiplier calculated from number of enemies killed (scales from 1f to 2f)
+        float moveSpeed = enemyPosition * Time.deltaTime * enemySpeed * (2f - ((float)enemyCount / (float)startingEnemyCount));
+        transform.position = transform.position + new Vector3(moveSpeed, 0f, 0f);
+    }
+
+    private void MoveForward()
+    {
+        transform.position = transform.position + new Vector3(0f, -forwardStep, 0f);
     }
 
     public void GetMinMax()
@@ -51,9 +69,13 @@ public class EnemyMovement : MonoBehaviour
         maxXPosition = 0f;
         minXPosition = 0f;
 
+        enemyCount = 0;
+
         foreach (Transform enemy in transform.GetComponentsInChildren<Transform>())
         {
             if (!enemy.gameObject.activeInHierarchy) continue;
+
+            enemyCount += 1;
 
             if (enemy.position.x > maxXPosition)
             {

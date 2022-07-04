@@ -5,14 +5,14 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    private float maxXPosition;
-    private float minXPosition;
-    public float maxXOOB;
-    public float minXOOB;
+    public float maxXPosition;
+    public float minXPosition;
+    public float maxXOutOfBounds;
+    public float minXOutOfBounds;
     public float enemySpeed;
     public float speedInterval;
 
-    Vector2 enemyPosition = new Vector2();
+    private float enemyPosition;
     void Start()
     {
         GetMinMax();
@@ -21,25 +21,27 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         //find far right and left enemies
-            //looping through enemies, figuring out farthest
-        
+        //looping through enemies, figuring out farthest
+
         //enemy loss detection - active in heirarchy 
 
         //function get min/max(){}
         //movement- similar to enemy shooting script
         //time pass for movement 
+
+        GetMinMax();
         
-        if ( maxXPosition < maxXOOB)
+        if ( maxXPosition < maxXOutOfBounds)
         {
-            enemyPosition.x = 1 * enemySpeed;
+            enemyPosition = -1 * enemySpeed;
         }
         
-        if (minXPosition > minXOOB)
+        if (minXPosition > minXOutOfBounds)
         {
-            enemyPosition.x = -1 * enemySpeed;
+            enemyPosition = 1 * enemySpeed;
         }
 
-        transform.position = transform.position + new Vector3(enemyPosition.x * Time.deltaTime, 0f, 0f);
+        transform.position = transform.position + new Vector3(enemyPosition * Time.deltaTime, 0f, 0f);
 
     }
     

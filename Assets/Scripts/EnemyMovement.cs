@@ -12,7 +12,8 @@ public class EnemyMovement : MonoBehaviour
     public float enemySpeed;
     public float speedInterval;
 
-    private float enemyPosition;
+    private float enemyPosition = 1f; // 1 is right direction ->, neg is <-
+
     void Start()
     {
         GetMinMax();
@@ -20,39 +21,35 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        //find far right and left enemies
-        //looping through enemies, figuring out farthest
-
         //enemy loss detection - active in heirarchy 
 
-        //function get min/max(){}
-        //movement- similar to enemy shooting script
-        //time pass for movement 
-
-        GetMinMax();
-        
-        if ( maxXPosition < maxXOutOfBounds)
+        GetMinMax(); // check if we are out of bounds
+        MoveEnemies(); // set direction of movement based on position, move
+    }
+    
+    void MoveEnemies()
+    {
+        // check if our right-most enemy is past right wall
+        if (maxXPosition > maxXOutOfBounds)
         {
-            enemyPosition = -1 * enemySpeed;
+            // move left
+            enemyPosition = -1;
         }
-        
-        if (minXPosition > minXOutOfBounds)
+
+        // check if our left-most enemy is past left wall
+        if (minXPosition < minXOutOfBounds)
         {
-            enemyPosition = 1 * enemySpeed;
+            // move right
+            enemyPosition = 1;
         }
 
         transform.position = transform.position + new Vector3(enemyPosition * Time.deltaTime, 0f, 0f);
-
-    }
-    
-    void moveEnemies()
-    {
-
     }
 
     public void GetMinMax()
     {
-
+        maxXPosition = 0f;
+        minXPosition = 0f;
 
         foreach (Transform enemy in transform.GetComponentsInChildren<Transform>())
         {
@@ -66,11 +63,8 @@ public class EnemyMovement : MonoBehaviour
             {
                 minXPosition = enemy.position.x;
             }
-            //need code to tell distinguis when enemies don't go as far as max or min x
         }
     }
-    //get min/max, call in both start and update
-
 }
 
 

@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
         if (enemyCount <= 0)
         {
             // go to next level
+            FindObjectOfType<GameManager>().NextLevel();
         }
     }
     
@@ -73,7 +74,7 @@ public class EnemyMovement : MonoBehaviour
 
         foreach (Transform enemy in transform.GetComponentsInChildren<Transform>())
         {
-            if (!enemy.gameObject.activeInHierarchy) continue;
+            if (!enemy.gameObject.activeInHierarchy || enemy.transform == transform) continue;
 
             enemyCount += 1;
 

@@ -56,10 +56,11 @@ public class GameManager : MonoBehaviour
         // go back to main menu
     }
 
-    private void NextLevel()
+    public void NextLevel()
     {
         // reset scene
         // increment level number
+        Debug.Log("Starting next level.");
     }
 
     public void LostLife()

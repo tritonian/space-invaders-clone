@@ -2532,6 +2532,8 @@ MonoBehaviour:
   enemySpeed: 0.5
   speedInterval: 1
   forwardStep: 0.25
+  enemyCount: 0
+  startingEnemyCount: 0
 --- !u!4 &1252719718
 Transform:
   m_ObjectHideFlags: 0

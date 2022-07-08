@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject lifeSpritePrefab;
     [SerializeField] private Transform lifeSpriteTextGameObject; // the parent object that the life sprites will be placed under in the heirarchy
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private GameObject enemyParent;
 
     // internal private references
     private List<GameObject> lifeSprites;
@@ -58,9 +59,8 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        // reset scene
-        // increment level number
-        Debug.Log("Starting next level.");
+        levelNumber += 1;
+        Instantiate(enemyParent);
     }
 
     public void LostLife()
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
     // called by special enemy when killed
     public void KilledSpecialEnemy()
     {
-
+        currentScore += 50 * levelNumber;
+        UpdateScore();
     }
 }

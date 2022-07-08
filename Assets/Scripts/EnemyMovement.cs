@@ -34,6 +34,8 @@ public class EnemyMovement : MonoBehaviour
         {
             // go to next level
             FindObjectOfType<GameManager>().NextLevel();
+            Destroy(gameObject); // destroy so we stop running this update function and don't call NextLevel each frame
+            return;
         }
     }
     

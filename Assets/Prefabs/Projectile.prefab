@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
   stepLength: 5
+  screenHeight: 5
 --- !u!212 &4639744054409146690
 SpriteRenderer:
   m_ObjectHideFlags: 0

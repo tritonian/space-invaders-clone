@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameManager gameManager;
 
+    public Projectile projectile;
+
     // Update is called once per frame
     void Update()
     {
@@ -56,8 +58,12 @@ public class PlayerMovement : MonoBehaviour
     {
         //create projectile, save a reference to it
         //give direction
-
-        Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            // old projectile still exists, can't shoot yet
+            return;
+        }
+        projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
         projectile.direction = Vector2.up;
     }
 

@@ -9,6 +9,5 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("wow it's actually working");
         SceneManager.LoadScene("Main");
-
     }
 }

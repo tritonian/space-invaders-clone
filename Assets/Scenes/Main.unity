@@ -729,7 +729,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 801078881}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1762561080}
+        m_TargetAssemblyTypeName: HighscoresPanel, Assembly-CSharp
+        m_MethodName: AddHighScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 801078878}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &801078881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,7 +1087,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1081972662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1578652561}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GoToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1081972662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,7 +1687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 999'
+  m_text: 'Score: -1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1882,7 +1918,9 @@ MonoBehaviour:
   lifeSpriteTextGameObject: {fileID: 45726968}
   scoreText: {fileID: 2081394194}
   enemyParent: {fileID: 706610485956678047, guid: b1ef2f97db967ad42b0c7e803d88bfa8, type: 3}
-  saveData: {fileID: 0}
+  GameOverCanvas: {fileID: 189071659}
+  finalScoreText: {fileID: 1331954962}
+  currentScore: 0
 --- !u!114 &1578652562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1895,6 +1933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b18c5e22d46c64ca15c1343e9892c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Highscores:
+    players: []
+    scores: 
 --- !u!1001 &1635679598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2053,6 +2094,7 @@ GameObject:
   - component: {fileID: 1762561082}
   - component: {fileID: 1762561081}
   - component: {fileID: 1762561080}
+  - component: {fileID: 1762561083}
   m_Layer: 0
   m_Name: Highscores_Panel
   m_TagString: Untagged
@@ -2097,6 +2139,8 @@ MonoBehaviour:
   gameManager: {fileID: 1578652561}
   playerScorePrefab: {fileID: 9079285281309020736, guid: 9f26ac7c8d3313f43968d0643ef3114e, type: 3}
   scorePanel: {fileID: 2082621512}
+  nameInput: {fileID: 1125252305}
+  saveData: {fileID: 1762561083}
 --- !u!114 &1762561081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2135,6 +2179,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762561078}
   m_CullTransparentMesh: 1
+--- !u!114 &1762561083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762561078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b18c5e22d46c64ca15c1343e9892c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Highscores:
+    players: []
+    scores: 
 --- !u!1 &1765753827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,7 +2710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 99999'
+  m_text: 'Score: -1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,24 +17,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform lifeSpriteTextGameObject; // the parent object that the life sprites will be placed under in the heirarchy
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private GameObject enemyParent;
+    [SerializeField] private GameObject GameOverCanvas;
+    [SerializeField] private TMP_Text finalScoreText;
 
     // internal private references
     private List<GameObject> lifeSprites;
-    private int currentScore;
+    public int currentScore;
     private int lives; // current number of lives - as opposed to number you start with
     private int levelNumber;
-    public SaveData saveData; // stores saveData for highscore for this session
 
     private void Start()
-    {
-        //saveData = GetComponent<SaveData>();
-        //saveData.ReadFromJson();
-
-        //saveData._Highscores.highScores.Add("123", 432);
-        //saveData._Highscores.highScores.Add("abd", 3456);
-        //saveData._Highscores.highScores.Add("ljg", 94567);
-        //saveData.SaveIntoJson();
-
+    {       
         InitializeLives();
         currentScore = 0;
         UpdateScore();
@@ -60,15 +54,14 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Game manager game over.");
-        // show game over screen
-        // save hi-score
-        // ask for name?
-        // go back to main menu
+        finalScoreText.text = currentScore.ToString();
+        GameOverCanvas.SetActive(true);
+        // freeze projectiles, enemies, don't allow movement/shooting?
     }
 
-    public void EnterScore(string name, int score) // handles checking if a score is high enough to be entered into high scores after player types in name
+    public void GoToMainMenu()
     {
-
+        SceneManager.LoadScene("Start_Menu");
     }
 
     public void NextLevel()
@@ -80,8 +73,10 @@ public class GameManager : MonoBehaviour
     public void LostLife()
     {
         
-        if (lives <= 0)
+        if (lives <= 1)
         {
+            Destroy(lifeSprites[lifeSprites.Count - 1]);
+            lifeSprites.Remove(lifeSprites[lifeSprites.Count - 1]);
             GameOver();
             return;
         }

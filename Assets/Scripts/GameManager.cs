@@ -22,9 +22,18 @@ public class GameManager : MonoBehaviour
     private int currentScore;
     private int lives; // current number of lives - as opposed to number you start with
     private int levelNumber;
+    public SaveData saveData; // stores saveData for highscore for this session
 
     private void Start()
     {
+        //saveData = GetComponent<SaveData>();
+        //saveData.ReadFromJson();
+
+        //saveData._Highscores.highScores.Add("123", 432);
+        //saveData._Highscores.highScores.Add("abd", 3456);
+        //saveData._Highscores.highScores.Add("ljg", 94567);
+        //saveData.SaveIntoJson();
+
         InitializeLives();
         currentScore = 0;
         UpdateScore();
@@ -55,6 +64,11 @@ public class GameManager : MonoBehaviour
         // save hi-score
         // ask for name?
         // go back to main menu
+    }
+
+    public void EnterScore(string name, int score) // handles checking if a score is high enough to be entered into high scores after player types in name
+    {
+
     }
 
     public void NextLevel()

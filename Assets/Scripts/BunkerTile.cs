@@ -9,7 +9,19 @@ public class BunkerTile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // when something collides with us, take damage
-        // going to assume it's a projectile
+
+        Debug.Log("Colided with" + collision.name);
+
+        if (collision.CompareTag("Bunker"))
+        {
+            return;
+        }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         //Debug.Log("Collided with a bunker piece, bunker taking damage.");
         health -= 20f;

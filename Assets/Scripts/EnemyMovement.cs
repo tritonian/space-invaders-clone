@@ -102,8 +102,6 @@ public class EnemyMovement : MonoBehaviour
         {
             if (!enemy.gameObject.activeInHierarchy || enemy.transform == transform) continue;
 
-            enemyCount += 1;
-
             if (enemy.position.y < minYPosition)
             {
                 minYPosition = enemy.position.y;
@@ -111,7 +109,7 @@ public class EnemyMovement : MonoBehaviour
         }
         if (minYPosition <= playerDeathPosition)
         {
-            GameManager.GameOver();
+            gameManager.GetComponent<GameManager>().GameOver();
         }
     }
 }

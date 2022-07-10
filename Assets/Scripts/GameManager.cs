@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         lives = startingNumLives;
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         Debug.Log("Game manager game over.");
         finalScoreText.text = currentScore.ToString();

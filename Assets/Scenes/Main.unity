@@ -3066,6 +3066,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 706610485956678046, guid: b1ef2f97db967ad42b0c7e803d88bfa8, type: 3}
+      propertyPath: playerDeathPosition
+      value: -3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 706610485956678047, guid: b1ef2f97db967ad42b0c7e803d88bfa8, type: 3}
       propertyPath: m_Name
       value: EnemyParent

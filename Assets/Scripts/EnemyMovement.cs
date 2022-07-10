@@ -12,6 +12,9 @@ public class EnemyMovement : MonoBehaviour
     public float enemySpeed;
     public float speedInterval;
     public float forwardStep;
+    public float minYPosition;
+    public float playerDeathPosition;
+    public GameManager gameManager;
 
     private float enemyPosition = 1f; // 1 is right direction ->, neg is <-
     public int enemyCount; // number of enemies in group
@@ -29,6 +32,7 @@ public class EnemyMovement : MonoBehaviour
 
         GetMinMax(); // check if we are out of bounds, also gets number of enemies
         MoveEnemies(); // set direction of movement based on position, move
+        CheckDeath();//see if enemies have over run player, end game.
 
         if (enemyCount <= 0)
         {
@@ -88,6 +92,26 @@ public class EnemyMovement : MonoBehaviour
             {
                 minXPosition = enemy.position.x;
             }
+        }
+    }
+    public void CheckDeath()
+    {
+        minYPosition = 0f;
+
+        foreach (Transform enemy in transform.GetComponentInChildren<Transform>())
+        {
+            if (!enemy.gameObject.activeInHierarchy || enemy.transform == transform) continue;
+
+            enemyCount += 1;
+
+            if (enemy.position.y < minYPosition)
+            {
+                minYPosition = enemy.position.y;
+            }
+        }
+        if (minYPosition <= playerDeathPosition)
+        {
+            GameManager.GameOver();
         }
     }
 }

@@ -1891,7 +1891,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578652559}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3067,6 +3067,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 706610485956678046, guid: b1ef2f97db967ad42b0c7e803d88bfa8, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1578652561}
+    - target: {fileID: 706610485956678046, guid: b1ef2f97db967ad42b0c7e803d88bfa8, type: 3}
       propertyPath: playerDeathPosition
       value: -3.5
       objectReference: {fileID: 0}
@@ -3083,14 +3087,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1277149808}
     m_Modifications:
-    - target: {fileID: 1882746875493404411, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2636116526562978959, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2910162062366337477, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3138,30 +3134,6 @@ PrefabInstance:
     - target: {fileID: 3513459638893383824, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
       propertyPath: m_Name
       value: Bunker
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004354210825890320, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4175558017941568451, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5572625027282820671, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734784931227314883, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7507616462734556475, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8952449385955163607, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c687e6f30edebfd45a6ca6ad55d5f64f, type: 3}

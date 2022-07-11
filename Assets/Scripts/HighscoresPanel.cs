@@ -37,8 +37,8 @@ public class HighscoresPanel : MonoBehaviour
 
         for (int i = 0; i < highscores.players.Count; i++)
         {
-            Debug.Log("Number of players in high score list: " + highscores.players.Count);
-            Debug.Log("Setting player: " + highscores.players[i]);
+            //Debug.Log("Number of players in high score list: " + highscores.players.Count);
+            //Debug.Log("Setting player: " + highscores.players[i]);
             GameObject lineItem = Instantiate(playerScorePrefab, scorePanel.transform);
             lineItem.GetComponent<PlayerHighScoreLineItem>().SetLineItem(highscores.players[i], highscores.scores[i]);
         }

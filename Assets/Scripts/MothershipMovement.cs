@@ -39,17 +39,19 @@ public class MothershipMovement : MonoBehaviour
 
         if (showTimePassed >= timeBetweenShow)//measure since last show, trip new show once clock expires
         {
-            show();
+            Show();
             showTimePassed = 0f;
             timeBetweenShow = Random.Range(minShowTime, maxShowTime);
         }
 
     }
 
-    private void show()
+    private void Show()
     {
         //true = to the left- starts on true
         shipDirection = true;
+
+        // ALEX COMMENT - is it supposed to hit the wall then turn around? I thought in the game it just went across the screen then disappeared
 
         if (shipDirection == true)
         {
@@ -58,6 +60,7 @@ public class MothershipMovement : MonoBehaviour
                 enemyPosition = 0;
             }
         }
+
         if (shipDirection == false)
         {
             if (transform.position.x < minXOutOfBounds)
@@ -66,13 +69,12 @@ public class MothershipMovement : MonoBehaviour
             }
         }
 
-
-        float moveSpeed = enemyPosition * Time.deltaTime * enemySpeed;
-        transform.position = transform.position + new Vector3(moveSpeed, 0f, 0f);
+        float moveSpeed = enemyPosition * Time.deltaTime * enemyMoveSpeed; // ALEX COMMENT - enemy position is never changed from 0, so moveSpeed will always be 0
+        transform.position = transform.position + new Vector3(moveSpeed, 0f, 0f); // ALEX COMMENT - this probably is supposed to be in the update function where it will run every frame? You have it twice.
     }
 
-    private void MoveForward()
+    private void MoveForward() // ALEX COMMENT - this needs to be called every frame (or update step)
     {
-        transform.position = transform.position + new Vector3(0f, -forwardStep, 0f);
+        //transform.position = transform.position + new Vector3(0f, -forwardStep, 0f); // ALEX COMMENT - forwardStep undefined - enemyMoveSpeed is effectively the same thing
     }
 }

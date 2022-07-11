@@ -30,7 +30,7 @@ public class EnemyShooting : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         //create projectile
         //create direction for proj.

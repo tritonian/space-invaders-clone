@@ -10,7 +10,7 @@ public class BunkerTile : MonoBehaviour
     {
         // when something collides with us, take damage
 
-        Debug.Log("Colided with" + collision.name);
+        //Debug.Log("Colided with" + collision.name);
 
         if (collision.CompareTag("Bunker"))
         {
